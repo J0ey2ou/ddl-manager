@@ -2,7 +2,7 @@
 
 ## 版本与运行要求
 
-- **当前版本：v4.0.0**（软件联系页面显示 **v4**）
+- **当前版本：v4.0.1**（软件联系页面显示 **v4.0.1**）
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
 - **运行组件：Microsoft WebView2**，推荐安装包已内置完整离线安装器，无需单独下载；便携版需要电脑已有 WebView2。
@@ -10,16 +10,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.0/DDLManager-v4.0.0-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.0/DDLManager-v4.0.0-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v4.0.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.0/DDLManager-v4.0.0-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v4.0.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.0/DDLManager-v4.0.0-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v4.0.1-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v4.0.1-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。
@@ -37,7 +37,7 @@
 ### 1. 日程与待办管理
 
 - **截止日期管理**：为事项设置名称、日期与时间，通过剩余时间、颜色和进度条判断紧迫程度。
-- **主页集中查看**：按截止时间排列待办，同时显示已逾期但尚未完成的独立日程。
+- **主页集中查看**：按截止时间排列待办，同时显示所有未完成的独立日程（包括今天、未来和已逾期的日程）。
 - **分类管理**：自动识别常见类别，也可自定义分类、选择多个分类并筛选查看。
 - **父子任务**：把大任务拆成多个子任务，查看完成数量与小进度；子任务截止时间不能晚于父任务。
 - **重复事项**：支持每天、每周、每月重复安排。
@@ -157,4 +157,5 @@
 
 欢迎反馈使用体验、提出功能建议，也欢迎围绕产品设计、功能开发和应用场景开展交流与合作！
 
-当前版本为 **v4.0.0**（软件联系页面显示 **v4**），本仓库提供软件发布包与使用说明。
+当前版本为 **v4.0.1**（软件联系页面显示 **v4.0.1**），本仓库提供软件发布包与使用说明。
+
