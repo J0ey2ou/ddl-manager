@@ -4,7 +4,7 @@
 
 ## 版本与运行要求
 
-- **当前版本：v4.0.1**（软件联系页面显示 **v4.0.1**）
+- **当前版本：v4.1.0**（软件联系页面显示 **v4.1.0**）
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
 - **运行组件：Microsoft WebView2**，推荐安装包已内置完整离线安装器，无需单独下载；便携版需要电脑已有 WebView2。
@@ -12,16 +12,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v4.0.1-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v4.0.1-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v4.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v4.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。
@@ -31,6 +31,12 @@
 安装包下载完成后可离线安装，本地日程、识别、统计和文件同步无需联网；Microsoft To Do 需要联网。
 
 便携版请完整解压，保留 `DDLManager.exe`、`_internal` 与 `fresh-install.flag`，不要直接在 ZIP 中运行。绿色 **Code → Download ZIP** 下载的是本仓库的说明文件，Release 中自动生成的 **Source code (zip / tar.gz)** 也不是可运行的软件安装包；请使用上方下载链接。
+
+## 新增：ChatGPT / Dot 本机连接（预览）
+
+在设置中开启后，Dot 可通过自定义 MCP 插件查询、新增、改期、完成和删除日程，并订阅事项变化与到期提醒。双向操作同一份本机数据，支持撤回、重试去重和修改冲突检查。电脑、DDL 和官方 Tunnel 连接程序必须保持运行。
+
+**需要自行连接插件、配置 Tunnel 并订阅提醒；打开开关不等于已连接 Dot。真实 Dot 账号的通知链路尚未完成端到端验证。** 详见 [连接步骤与运行边界](DOT_SETUP.md)。
 
 ## 功能说明
 
@@ -160,5 +166,5 @@
 
 欢迎反馈使用体验、提出功能建议，也欢迎围绕产品设计、功能开发和应用场景开展交流与合作！
 
-当前版本为 **v4.0.1**（软件联系页面显示 **v4.0.1**），本仓库提供软件发布包与使用说明。
+当前版本为 **v4.1.0**（软件联系页面显示 **v4.1.0**），本仓库提供软件发布包与使用说明。
 

@@ -4,7 +4,7 @@
 
 ## Version and requirements
 
-- **Current version: v4.0.1** (also shown on the app's Contact page).
+- **Current version: v4.1.0** (also shown on the app's Contact page).
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
 - **Runtime:** Microsoft WebView2. The recommended installer includes the full offline runtime installer. The portable edition requires WebView2 to be installed on your computer.
@@ -12,16 +12,16 @@
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v4.0.1-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v4.0.1-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.0.1/DDLManager-v4.0.1-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v4.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v4.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -31,6 +31,12 @@ The recommended installer includes the full offline WebView2 installer. Download
 Once downloaded, the installer works offline. Local schedules, recognition, statistics, and file-based schedule transfers do not require an internet connection. Microsoft To Do synchronization requires internet access.
 
 For the portable edition, extract the entire ZIP and keep `DDLManager.exe`, `_internal`, and `fresh-install.flag` together. Do not run the app from inside the ZIP. **Code → Download ZIP** downloads this repository's documentation. The automatically generated **Source code (zip / tar.gz)** release archives are also not application installers. Use the download links above to install the software.
+
+## New: local ChatGPT / Dot bridge (preview)
+
+Enable the optional bridge in Settings to let Dot read, create, reschedule, complete, reopen, and delete local schedules through a custom MCP plugin. Subscribe to schedule changes and due reminders, with undo, retry deduplication, and revision conflict checks. Keep the computer, DDL, and official tunnel client running.
+
+**Plugin installation, Tunnel configuration, and event subscriptions are required. Enabling the setting alone does not connect Dot. Real-account Dot notification delivery has not yet been verified end to end.** See [setup and limitations](DOT_SETUP.md).
 
 ## Features
 
@@ -159,4 +165,4 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v4.0.1**. This repository provides application releases and usage documentation.
+The current version is **v4.1.0**. This repository provides application releases and usage documentation.
