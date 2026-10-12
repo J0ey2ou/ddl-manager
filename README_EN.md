@@ -4,7 +4,7 @@
 
 ## Version and requirements
 
-- **Current version: v4.1.0** (also shown on the app's Contact page).
+- **Current version: v4.3.0 · Focus sessions and creations**.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
 - **Runtime:** Microsoft WebView2. The recommended installer includes the full offline runtime installer. The portable edition requires WebView2 to be installed on your computer.
@@ -12,16 +12,16 @@
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v4.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v4.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.1.0/DDLManager-v4.1.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v4.3.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v4.3.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -32,7 +32,28 @@ Once downloaded, the installer works offline. Local schedules, recognition, stat
 
 For the portable edition, extract the entire ZIP and keep `DDLManager.exe`, `_internal`, and `fresh-install.flag` together. Do not run the app from inside the ZIP. **Code → Download ZIP** downloads this repository's documentation. The automatically generated **Source code (zip / tar.gz)** release archives are also not application installers. Use the download links above to install the software.
 
-## New: local ChatGPT / Dot bridge (preview)
+## New: focus sessions and a collection of creations
+
+Open **Focus**, create a house, farm, or photo puzzle, and choose a target of **1–200 successful sessions**. Set a timer of **1–180 minutes**. Each finished session is saved automatically and adds one brick, one plant, or one puzzle piece to the selected creation.
+
+- **House:** Build a cottage one brick at a time, with a completed-house reveal.
+- **Farm:** Choose from 20 locally illustrated plants before each session, with growth and gentle sway animations.
+- **Photo puzzle:** Import a local JPG, PNG, or WebP image (up to 10 MB and 24 megapixels). It is divided into exactly the chosen number of pieces; each successful session animates one piece into place and restores its color.
+- **Floating timer:** Right-click the floating window to open focus timing or the collection. Choose a countdown, progress bar, or C4-style countdown with a completion effect. Pause, resume, and end sessions from either window.
+- **Persistence:** Creations, imported images, and successful sessions are saved per local account. Targets are fixed at creation. Paused or abandoned sessions earn no reward. Closing the page keeps the timer running; after app exit or computer sleep, reopening settles the session using its saved end time.
+- **Feature switch:** Settings → Window manager → Focus controls the page and floating-window entries together. Turning it off ends unfinished sessions across accounts and preserves existing creations and successful-session records.
+
+Images remain on the computer and are not uploaded. Focus records and imported images are stored in the local database and are not included in schedule-transfer exports. Some new focus controls currently use Chinese labels.
+
+## New: free local smart reminders
+
+Open Smart reminders to review recent overdue work and the next seven days. Deadlines notify 60 minutes in advance by default; independent plans notify 15 minutes before they start. Completed and deleted items stop notifying. Settings includes configurable lead time, a default 22:00–08:00 quiet period, and a desktop notification test.
+
+Snooze for 15 minutes, one hour, or 24 hours, or dismiss reminders for the current deadline. Rescheduling allows a new reminder. Notifications are grouped and each stage is deduplicated across restarts. Keep DDL running in the tray; reminders cannot run when the app is fully closed or the computer is off. Items overdue by more than seven days remain visible but do not automatically notify.
+
+All reminder rules run locally without an AI API, Tunnel, or internet connection. Windows notification settings can suppress their display. Copy the schedule text manually into ChatGPT for planning advice, then preview suggested new items in DDL's text recognition tool. This is a manual handoff using your own ChatGPT account, not automatic synchronization or a model API request from DDL.
+
+## Optional: local ChatGPT / Dot bridge (preview)
 
 Enable the optional bridge in Settings to let Dot read, create, reschedule, complete, reopen, and delete local schedules through a custom MCP plugin. Subscribe to schedule changes and due reminders, with undo, retry deduplication, and revision conflict checks. Keep the computer, DDL, and official tunnel client running.
 
@@ -134,7 +155,7 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 ### 9. Undo, shortcuts, and background operation
 
 - **Undo:** Retain the current account's 30 most recent undoable operations during the session, including schedule imports. Hiding the app in the tray preserves this history; fully exiting clears it.
-- **System tray:** The main window's `X` button hides the app in the Windows tray. Double-click the tray icon to restore it, or right-click and choose Exit to close it completely.
+- **System tray:** The main window's `X` button hides the app in the Windows tray. The floating window does not occupy the taskbar. Double-click the tray icon to restore the main window, or right-click and choose Show floating window to enable or restore the panel. Choose Exit to close the app completely.
 - **Start with Windows:** Enable this in Settings to start in the tray when you sign in to Windows.
 - **Single instance:** Launching the app again restores the existing window.
 - **Local accounts:** Register, sign in, and switch between accounts.
@@ -165,4 +186,4 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v4.1.0**. This repository provides application releases and usage documentation.
+The current version is **v4.3.0**. This repository provides application releases and usage documentation.
