@@ -5,6 +5,7 @@
 ## Version and requirements
 
 - **Current version: v4.3.0 · Focus sessions and creations**.
+- **Updated build (2026-10-14):** Adds the default Pearl glass theme. The installer, portable ZIP, and SHA-256 files have been refreshed under the existing v4.3.0 release.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
 - **Runtime:** Microsoft WebView2. The recommended installer includes the full offline runtime installer. The portable edition requires WebView2 to be installed on your computer.
@@ -171,6 +172,7 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 
 ### 10. Appearance and personalization
 
+- The default Pearl theme uses pearl white, ice blue, soft lavender gradients, translucent cards, and subtle motion across the main pages, sign-in screens, quick capture, and floating window. It works offline and respects reduced-motion preferences. Existing users receive the theme once on upgrade; later theme choices are preserved.
 - Choose background themes and urgency color modes, including fixed thresholds, dynamic ranges, and a hybrid mode.
 - Manage quotes, their visibility, and which page modules are shown.
 - Choose Chinese or English interface options.
