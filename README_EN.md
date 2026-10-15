@@ -5,11 +5,17 @@
 ## Version and requirements
 
 - **Current version: v4.3.0 · Focus sessions and creations**.
-- **Updated build (2026-10-14):** Adds the default Pearl glass theme. The installer, portable ZIP, and SHA-256 files have been refreshed under the existing v4.3.0 release.
+- **Updated build (2026-10-15):** Adds persistent notes for ideas to consider, with recognition and review before conversion into schedules. Includes the Pearl glass theme. Installer, portable ZIP, and SHA-256 files are refreshed under v4.3.0.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
 - **Runtime:** Microsoft WebView2. The recommended installer includes the full offline runtime installer. The portable edition requires WebView2 to be installed on your computer.
 - **Installation location:** Any writable folder on C:, D:, E:, or another drive.
+
+## New: ideas to consider
+
+The home page has a **待考虑事项** (Ideas to consider) button above Export / Import at the bottom right. Write an idea and choose **保存事项** to keep it locally per account, including after restarting.
+
+Choose **事项识别并转化** to recognize all saved notes, review titles, dates and recurrence, and confirm conversion into schedules. Supply a date for undated ideas. Unchecked notes and cancelled or failed conversions remain saved. Only successful conversions remove their source notes. Saving, deletion and conversion support Undo. These notes are not included in schedule exports; back up the `data` folder for a complete backup. New controls currently use Chinese labels.
 
 ## Download and installation
 
