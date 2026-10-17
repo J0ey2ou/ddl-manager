@@ -2,6 +2,8 @@
 
 v4.1.0 新增可选的本机 MCP 接口。默认关闭，不会自动上传日程，不需要在 DDL 中填写 GPT 模型 API Key。连接官方 Tunnel 需要另行配置其运行密钥和权限。
 
+v4.4.0 起，DDL 主界面通过 WebView2 在程序内部直接通信，不启动 HTTP 服务器或监听端口。本指南中的本机接口仅用于手动启用的 ChatGPT / Dot 高级连接；普通离线使用不需要开启它。
+
 ## 能做什么
 
 - Dot 查询、新增、改期、完成、恢复和删除当前账号的 DDL 待办；也可查询、修改、完成和删除已有的独立日程。
@@ -14,7 +16,7 @@ v4.1.0 新增可选的本机 MCP 接口。默认关闭，不会自动上传日�
 
 1. 启动 DDL 并登录本地账号，在 **设置 → ChatGPT / Dot · 本机日程连接** 中开启连接，保存。
 2. 展开 **连接 Dot（首次配置）**，复制本机接口地址。它包含随机连接密钥，只交给自己的连接程序，不要放入截图、Issue 或公开仓库。
-3. 按 [OpenAI Secure MCP Tunnel 官方指南](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels) 创建 Tunnel，关联你使用 Dot 的 ChatGPT 工作区。使用官方 tunnel-client，将步骤 2 的地址配置为 HTTP MCP 目标（`--mcp-server-url`）。该服务只监听 `127.0.0.1:17843`，不要把 DDL 主界面端口公开。
+3. 按 [OpenAI Secure MCP Tunnel 官方指南](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels) 创建 Tunnel，关联你使用 Dot 的 ChatGPT 工作区。使用官方 tunnel-client，将步骤 2 的地址配置为 HTTP MCP 目标（`--mcp-server-url`）。该可选服务只监听 `127.0.0.1:17843`；主界面没有监听端口。
 4. 在 ChatGPT Plugins 中添加自定义 MCP 服务，选择上述 Tunnel，创建并安装插件。参见 [官方插件连接说明](https://developers.openai.com/api/docs/guides/custom-mcp-server)。本机 `127.0.0.1` 地址不能直接作为云端插件的 Server URL。
 5. 先让 Dot “使用 DDL Manager 列出我的日程”，然后测试新增一条事项并在 DDL 中确认。
 6. 对 Dot 说：

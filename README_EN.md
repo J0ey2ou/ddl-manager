@@ -4,31 +4,25 @@
 
 ## Version and requirements
 
-- **Current version: v4.3.0 · Focus sessions and creations**.
-- **Updated build (2026-10-15):** Adds persistent notes for ideas to consider, with recognition and review before conversion into schedules. Includes the Pearl glass theme. Installer, portable ZIP, and SHA-256 files are refreshed under v4.3.0.
+- **Current version: v4.4.0 · In-process desktop and focus records**.
+- **2026-10-17:** The desktop UI now communicates directly inside the app, without a local HTTP server or TCP connection. Python and dependencies are bundled; users do not need to install Python or configure an environment.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
 - **Runtime:** Microsoft WebView2. The recommended installer includes the full offline runtime installer. The portable edition requires WebView2 to be installed on your computer.
 - **Installation location:** Any writable folder on C:, D:, E:, or another drive.
 
-## New: ideas to consider
-
-The home page has a **待考虑事项** (Ideas to consider) button above Export / Import at the bottom right. Write an idea and choose **保存事项** to keep it locally per account, including after restarting.
-
-Choose **事项识别并转化** to recognize all saved notes, review titles, dates and recurrence, and confirm conversion into schedules. Supply a date for undated ideas. Unchecked notes and cancelled or failed conversions remain saved. Only successful conversions remove their source notes. Saving, deletion and conversion support Undo. These notes are not included in schedule exports; back up the `data` folder for a complete backup. New controls currently use Chinese labels.
-
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v4.3.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v4.3.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.3.0/DDLManager-v4.3.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v4.4.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v4.4.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -39,32 +33,15 @@ Once downloaded, the installer works offline. Local schedules, recognition, stat
 
 For the portable edition, extract the entire ZIP and keep `DDLManager.exe`, `_internal`, and `fresh-install.flag` together. Do not run the app from inside the ZIP. **Code → Download ZIP** downloads this repository's documentation. The automatically generated **Source code (zip / tar.gz)** release archives are also not application installers. Use the download links above to install the software.
 
-## New: focus sessions and a collection of creations
+## Local operation, privacy and upgrades
 
-Open **Focus**, create a house, farm, or photo puzzle, and choose a target of **1–200 successful sessions**. Set a timer of **1–180 minutes**. Each finished session is saved automatically and adds one brick, one plant, or one puzzle piece to the selected creation.
+The main window, floating window and quick capture window now call local application logic directly through WebView2. The desktop UI no longer starts an HTTP server, opens a listening port or connects to 127.0.0.1. This removes the UI loopback startup step that could raise WinError 10060 in previous builds.
 
-- **House:** Build a cottage one brick at a time, with a completed-house reveal.
-- **Farm:** Choose from 20 locally illustrated plants before each session, with growth and gentle sway animations.
-- **Photo puzzle:** Import a local JPG, PNG, or WebP image (up to 10 MB and 24 megapixels). It is divided into exactly the chosen number of pieces; each successful session animates one piece into place and restores its color.
-- **Floating timer:** Right-click the floating window to open focus timing or the collection. Choose a countdown, progress bar, or C4-style countdown with a completion effect. Pause, resume, and end sessions from either window.
-- **Persistence:** Creations, imported images, and successful sessions are saved per local account. Targets are fixed at creation. Paused or abandoned sessions earn no reward. Closing the page keeps the timer running; after app exit or computer sleep, reopening settles the session using its saved end time.
-- **Feature switch:** Settings → Window manager → Focus controls the page and floating-window entries together. Turning it off ends unfinished sessions across accounts and preserves existing creations and successful-session records.
+Both distributions include Python and application dependencies. Users do not need Python, pip or a development environment. The recommended Setup also includes the full offline Microsoft WebView2 installer. Supported platforms remain Windows 10 version 2004 or later and Windows 11 x64.
 
-Images remain on the computer and are not uploaded. Focus records and imported images are stored in the local database and are not included in schedule-transfer exports. Some new focus controls currently use Chinese labels.
+Local schedules, recognition, focus sessions, statistics and reminders work offline. Microsoft To Do requires internet access. Only the optional, manually enabled ChatGPT / Dot integration starts a separate local MCP endpoint.
 
-## New: free local smart reminders
-
-Open Smart reminders to review recent overdue work and the next seven days. Deadlines notify 60 minutes in advance by default; independent plans notify 15 minutes before they start. Completed and deleted items stop notifying. Settings includes configurable lead time, a default 22:00–08:00 quiet period, and a desktop notification test.
-
-Snooze for 15 minutes, one hour, or 24 hours, or dismiss reminders for the current deadline. Rescheduling allows a new reminder. Notifications are grouped and each stage is deduplicated across restarts. Keep DDL running in the tray; reminders cannot run when the app is fully closed or the computer is off. Items overdue by more than seven days remain visible but do not automatically notify.
-
-All reminder rules run locally without an AI API, Tunnel, or internet connection. Windows notification settings can suppress their display. Copy the schedule text manually into ChatGPT for planning advice, then preview suggested new items in DDL's text recognition tool. This is a manual handoff using your own ChatGPT account, not automatic synchronization or a model API request from DDL.
-
-## Optional: local ChatGPT / Dot bridge (preview)
-
-Enable the optional bridge in Settings to let Dot read, create, reschedule, complete, reopen, and delete local schedules through a custom MCP plugin. Subscribe to schedule changes and due reminders, with undo, retry deduplication, and revision conflict checks. Keep the computer, DDL, and official tunnel client running.
-
-**Plugin installation, Tunnel configuration, and event subscriptions are required. Enabling the setting alone does not connect Dot. Real-account Dot notification delivery has not yet been verified end to end.** See [setup and limitations](DOT_SETUP.md).
+Before upgrading, exit the app from the tray and back up your `data` folder. Install to the existing location, or preserve `data` when replacing portable program files. Existing accounts, schedules, saved ideas and focus creations remain in the local database.
 
 ## Features
 
@@ -139,7 +116,40 @@ It means “Complete three things tomorrow afternoon: organize materials, prepar
 
 Exports contain schedules for the current account, without login information or application settings. This is a manual file transfer feature; it does not connect to the internet automatically. Each file may be up to 10 MB and contain up to 10,000 items plus 10,000 linked plans.
 
-### 7. Desktop floating window
+### 7. Focus timers, creations and session records
+
+Open **Focus**, create a house, farm, or photo puzzle, and choose a target of **1–200 successful sessions**. Set a timer of **1–180 minutes**. Each finished session is saved automatically and adds one brick, one plant, or one puzzle piece to the selected creation.
+
+- **House:** Build a cottage one brick at a time, with a completed-house reveal.
+- **Farm:** Choose from 20 locally illustrated plants before each session, with growth and gentle sway animations.
+- **Photo puzzle:** Import a local JPG, PNG, or WebP image (up to 10 MB and 24 megapixels). It is divided into exactly the chosen number of pieces; each successful session animates one piece into place and restores its color.
+- **Floating timer:** Right-click the floating window to open focus timing or the collection. Choose a countdown, progress bar, or C4-style countdown with a completion effect. Pause, resume, and end sessions from either window.
+- **Persistence:** Creations, imported images, and successful sessions are saved per local account. Targets are fixed at creation. Paused or abandoned sessions earn no reward. Closing the page keeps the timer running. Countdown sessions settle by their saved end time; count-up sessions pause on app exit and can be resumed manually.
+- **Feature switch:** Settings → Window manager → Focus controls the page and floating-window entries together. Turning it off ends unfinished sessions across accounts and preserves existing creations and successful-session records.
+
+Images remain on the computer and are not uploaded. Focus records and imported images are stored in the local database and are not included in schedule-transfer exports. Some new focus controls currently use Chinese labels.
+
+Choose **正向计时** (Count up) on the Focus page to start at `00:00` without a target duration. **完成并保存** (Finish and save) records the actual timed duration, excluding pauses, awards one success, and adds one brick, plant or puzzle piece. Discarding a session awards nothing. The floating timer supports count-up, pause, resume and finish too.
+
+Hover over a completed brick, plant or puzzle piece, then click to inspect its exact focus session. The record shows start and completion times, timer type and actual focus duration. Add or edit up to 2,000 characters describing what you completed. Records are scoped to the local account; existing creations link to historical sessions, whose notes can be filled in later. Keyboard users can focus a piece and press Enter or Space.
+
+Leaving the page keeps the timer running. Exiting the desktop app pauses count-up timers; resume them manually after restarting. After an unexpected exit, the saved checkpoint is restored in a paused state without counting offline downtime. Pause before putting the computer to sleep. Countdown sessions retain their previous automatic completion behavior. Work descriptions are entered by the user, not inferred automatically.
+
+### 8. Ideas to consider
+
+The home page has a **待考虑事项** (Ideas to consider) button above Export / Import at the bottom right. Write an idea and choose **保存事项** to keep it locally per account, including after restarting.
+
+Choose **事项识别并转化** to recognize all saved notes, review titles, dates and recurrence, and confirm conversion into schedules. Supply a date for undated ideas. Unchecked notes and cancelled or failed conversions remain saved. Only successful conversions remove their source notes. Saving, deletion and conversion support Undo. These notes are not included in schedule exports; back up the `data` folder for a complete backup. New controls currently use Chinese labels.
+
+### 9. Local smart reminders
+
+Open Smart reminders to review recent overdue work and the next seven days. Deadlines notify 60 minutes in advance by default; independent plans notify 15 minutes before they start. Completed and deleted items stop notifying. Settings includes configurable lead time, a default 22:00–08:00 quiet period, and a desktop notification test.
+
+Snooze for 15 minutes, one hour, or 24 hours, or dismiss reminders for the current deadline. Rescheduling allows a new reminder. Notifications are grouped and each stage is deduplicated across restarts. Keep DDL running in the tray; reminders cannot run when the app is fully closed or the computer is off. Items overdue by more than seven days remain visible but do not automatically notify.
+
+All reminder rules run locally without an AI API, Tunnel, or internet connection. Windows notification settings can suppress their display. Copy the schedule text manually into ChatGPT for planning advice, then preview suggested new items in DDL's text recognition tool. This is a manual handoff using your own ChatGPT account, not automatic synchronization or a model API request from DDL.
+
+### 10. Desktop floating window
 
 - Display unfinished items, with up to three per page and paging controls.
 - See titles, remaining or overdue time, and progress bars. Use `✓` for on-time completion, `!` for late completion, and `×` to delete.
@@ -148,7 +158,7 @@ Exports contain schedules for the current account, without login information or 
 - Right-click to open the main window, Settings, clipboard recognition, or the exit command. The menu closes when you interact with another window.
 - Adjust size, opacity, and always-on-top behavior, with live slider previews.
 
-### 8. Microsoft To Do synchronization
+### 11. Microsoft To Do synchronization
 
 After signing in to your Microsoft account in Settings, you can synchronize local items **one way** to Microsoft To Do. The default destination list is `DDL Manager`.
 
@@ -159,7 +169,7 @@ After signing in to your Microsoft account in Settings, you can synchronize loca
 
 This feature requires internet access. Changes made in Microsoft To Do do not synchronize back to DDL Manager. Other features remain available offline.
 
-### 9. Undo, shortcuts, and background operation
+### 12. Undo, shortcuts, and background operation
 
 - **Undo:** Retain the current account's 30 most recent undoable operations during the session, including schedule imports. Hiding the app in the tray preserves this history; fully exiting clears it.
 - **System tray:** The main window's `X` button hides the app in the Windows tray. The floating window does not occupy the taskbar. Double-click the tray icon to restore the main window, or right-click and choose Show floating window to enable or restore the panel. Choose Exit to close the app completely.
@@ -176,7 +186,7 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 | `Ctrl + Alt + D` | Show or hide the main window |
 | `Ctrl + Alt + V` | Open the separate clipboard recognition window |
 
-### 10. Appearance and personalization
+### 13. Appearance and personalization
 
 - The default Pearl theme uses pearl white, ice blue, soft lavender gradients, translucent cards, and subtle motion across the main pages, sign-in screens, quick capture, and floating window. It works offline and respects reduced-motion preferences. Existing users receive the theme once on upgrade; later theme choices are preserved.
 - Choose background themes and urgency color modes, including fixed thresholds, dynamic ranges, and a hybrid mode.
@@ -184,6 +194,12 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 - Choose Chinese or English interface options.
 - Set the floating window's size, opacity, and always-on-top behavior.
 - Clean up old temporary cache files while retaining schedules and recognition models.
+
+## Optional: local ChatGPT / Dot bridge (preview)
+
+Enable the optional bridge in Settings to let Dot read, create, reschedule, complete, reopen, and delete local schedules through a custom MCP plugin. Subscribe to schedule changes and due reminders, with undo, retry deduplication, and revision conflict checks. Keep the computer, DDL, and official tunnel client running.
+
+**Plugin installation, Tunnel configuration, and event subscriptions are required. Enabling the setting alone does not connect Dot. Real-account Dot notification delivery has not yet been verified end to end.** See [setup and limitations](DOT_SETUP.md).
 
 ## Contact and collaboration
 
@@ -194,4 +210,4 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v4.3.0**. This repository provides application releases and usage documentation.
+The current version is **v4.4.0**. This repository provides application releases and usage documentation.
