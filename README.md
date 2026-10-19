@@ -1,10 +1,18 @@
 # DDL Manager · 我的 DDL
 
+## 最新修复版 v4.4.1 2026年10月19日
+
+修复本轮确认的 **9 项问题**：父子任务完成与恢复联动、已完成任务层级、多级任务和分类筛选遗漏、各层截止时间校验、关联日历信息滞后、编辑分类裁切及工具遮挡。新增任务折叠、主页搜索和已完成显示开关；补充事务回滚、并发完成及账号隔离验证，**150 项 Python 回归测试全部通过**。
+
+[下载 v4.4.1 修复版](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.1) · [完整修复说明](RELEASE_NOTES.md) · [测试与边界说明](docs/user-feedback-review-2026-10-19.md)
+
+升级前请从托盘完全退出程序并备份 `data` 目录，安装到原目录时保留已有数据。丢档及真实在线同步失败尚未复现，本版未将其标记为已解决。
+
 **简体中文** | [English](README_EN.md)
 
 ## 版本与运行要求
 
-- **当前版本：v4.4.0 · 本地直连与专注记录**。
+- **当前版本：v4.4.1 · 任务层级与日历修复**。
 - **2026-10-17 更新：** 主界面移除本地 HTTP 服务器与 TCP 连接，直接在程序内部通信；安装包内置 Python 运行时，用户无需安装 Python 或配置环境。
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
@@ -13,16 +21,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v4.4.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v4.4.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.0/DDLManager-v4.4.0-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v4.4.1-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v4.4.1-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。
@@ -52,7 +60,8 @@
 - **截止日期管理**：为事项设置名称、日期与时间，通过剩余时间、颜色和进度条判断紧迫程度。
 - **主页集中查看**：按截止时间排列待办，同时显示所有未完成的独立日程（包括今天、未来和已逾期的日程）。
 - **分类管理**：自动识别常见类别，也可自定义分类、选择多个分类并筛选查看。
-- **父子任务**：把大任务拆成多个子任务，查看完成数量与小进度；子任务截止时间不能晚于父任务。
+- **父子任务**：支持多级嵌套与折叠；完成父任务会完成后代，全部子任务完成后自动完成父任务。重新打开子任务会重新打开祖先，重新打开父任务保留子任务状态；各层子任务截止时间不能晚于父任务。
+- **主页查找**：按标题、类别和所属路径搜索未完成与已完成任务；可隐藏已完成区域，折叠和显示偏好在本机按账号记忆。
 - **重复事项**：支持每天、每周、每月重复安排。
 - **快捷设定时间**：通过“今晚、明天、周末、下周”等选项快速填写截止时间。
 - **日常操作**：编辑、删除、完成和恢复未完成；DDL 待办支持批量完成、删除及修改分类。
@@ -99,7 +108,7 @@
 
 ### 6. 跨电脑同步日程
 
-主页右下角、撤回按钮上方提供 **导出日程** 和 **导入日程**，首次点击会显示简短说明。
+主页底部工具区提供 **导出日程** 和 **导入日程**，首次点击会显示简短说明。
 
 1. 在电脑 A 登录本地账号，点击“导出日程”，保存 `.ddl.json` 文档。
 2. 通过 U 盘或您选择的方式把文件复制到电脑 B。
@@ -138,7 +147,7 @@
 
 ### 8. 待考虑事项
 
-主页右下角，导出、导入日程上方新增 **待考虑事项** 页签。先写下需要考虑的想法并点击“保存事项”，无需立即确定日期。
+主页底部工具区提供 **待考虑事项** 页签。先写下需要考虑的想法并点击“保存事项”，无需立即确定日期。
 
 - 按本地账号长期保存，关闭窗口或重启后仍保留，直到成功转成日程或手动删除。
 - 点击“事项识别并转化”，核对标题、日期和重复方式后确认生成日程；未识别到时间时需手动补充。
@@ -218,5 +227,5 @@
 
 欢迎反馈使用体验、提出功能建议，也欢迎围绕产品设计、功能开发和应用场景开展交流与合作！
 
-当前版本为 **v4.4.0**。本仓库提供软件发布包与使用说明。
+当前版本为 **v4.4.1**。本仓库提供软件发布包与使用说明。
 

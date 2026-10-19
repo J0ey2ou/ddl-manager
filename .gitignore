@@ -1,5 +1,9 @@
 *
 !README.md
-!RELEASE_NOTES.md
-!.gitignore
 !README_EN.md
+!RELEASE_NOTES.md
+!DOT_SETUP.md
+!下载软件.md
+!.gitignore
+!docs/
+!docs/**
