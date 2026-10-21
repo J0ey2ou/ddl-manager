@@ -1,10 +1,10 @@
 # DDL Manager · 我的 DDL
 
-## 最新修复版 v4.4.2 2026年10月21日
+## 最新版 v4.4.3 2026年10月21日
 
-**日历整月自适应电脑窗口**：月份完整放入当前页面，标题、日期、事项和操作按钮按同一比例缩放。支持四、五、六行月份；每天先显示两条事项，展开后在当天格子内滚动。修复缩放后拖拽预览尺寸和位置不一致的问题，保留 v4.4.1 的任务层级等修复。
+**日历新增右键复制和跨日期粘贴**：右键事项选择“复制事项”，再右键目标日期选择“粘贴到这一天”，也可先切换月份。保留标题、时间、类别和备注；副本为独立的未完成事项，支持撤回，原事项保留。继续包含整月一屏、字体同比缩放及此前任务层级修复。
 
-[下载 v4.4.2 修复版](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.2) · [完整修复说明](RELEASE_NOTES.md) · [日历验证记录](docs/calendar-fit-2026-10-21.md)
+[下载 v4.4.3](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.3) · [完整更新说明](RELEASE_NOTES.md) · [复制粘贴验证记录](docs/calendar-copy-2026-10-21.md)
 
 升级前请从托盘完全退出程序并备份 `data` 目录，安装到原目录时保留已有数据。
 
@@ -12,7 +12,7 @@
 
 ## 版本与运行要求
 
-- **当前版本：v4.4.2 · 日历整月自适应**。
+- **当前版本：v4.4.3 · 日历复制与粘贴**。
 - **2026-10-17 更新：** 主界面移除本地 HTTP 服务器与 TCP 连接，直接在程序内部通信；安装包内置 Python 运行时，用户无需安装 Python 或配置环境。
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
@@ -21,16 +21,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v4.4.2-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v4.4.2-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v4.4.3-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v4.4.3-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。
@@ -228,5 +228,5 @@
 
 欢迎反馈使用体验、提出功能建议，也欢迎围绕产品设计、功能开发和应用场景开展交流与合作！
 
-当前版本为 **v4.4.2**。本仓库提供软件发布包与使用说明。
+当前版本为 **v4.4.3**。本仓库提供软件发布包与使用说明。
 

@@ -1,10 +1,10 @@
 # DDL Manager
 
-## Latest bug-fix release v4.4.2 October 21 2026
+## Latest release v4.4.3 October 21 2026
 
-The monthly calendar fits the available desktop window, scaling all calendar text and controls together. Four-, five-, and six-row months stay on one page. Each day previews two entries; expanded entries scroll within that day. Drag previews follow the same scale. Includes the task hierarchy fixes from v4.4.1.
+**Copy and paste calendar items with the right-click menu.** Right-click an item, choose Copy item, then right-click a destination day and choose Paste. Switch months before pasting if needed. The independent, unfinished copy keeps the title, time, category and notes; the original remains unchanged. Undo removes the copy. Includes the fit-to-window calendar and previous hierarchy fixes.
 
-[Download v4.4.2](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.2) · [Release notes](RELEASE_NOTES.md) · [Calendar test report in Chinese](docs/calendar-fit-2026-10-21.md)
+[Download v4.4.3](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.3) · [Release notes](RELEASE_NOTES.md) · [Copy/paste test report in Chinese](docs/calendar-copy-2026-10-21.md)
 
 Exit the app from the tray and back up your `data` folder before upgrading. Keep existing data when installing over the previous version.
 
@@ -12,7 +12,7 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Version and requirements
 
-- **Current version: v4.4.2 · Fit-to-window monthly calendar**.
+- **Current version: v4.4.3 · Calendar copy and paste**.
 - **2026-10-17:** The desktop UI now communicates directly inside the app, without a local HTTP server or TCP connection. Python and dependencies are bundled; users do not need to install Python or configure an environment.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
@@ -21,16 +21,16 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v4.4.2-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v4.4.2-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v4.4.3-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v4.4.3-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -219,4 +219,4 @@ Enable the optional bridge in Settings to let Dot read, create, reschedule, comp
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v4.4.2**. This repository provides application releases and usage documentation.
+The current version is **v4.4.3**. This repository provides application releases and usage documentation.
