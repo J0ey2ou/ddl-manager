@@ -1,18 +1,18 @@
 # DDL Manager
 
-## Latest bug-fix release v4.4.1 October 19 2026
+## Latest bug-fix release v4.4.2 October 21 2026
 
-Fixes nine confirmed issues involving parent and child completion, completed-task hierarchy, nested tasks and category filtering, deadline validation, linked calendar data, clipped category menus, and overlapping tools. Adds task folding, home search, and a completed-section toggle. All 150 Python regression tests pass.
+The monthly calendar fits the available desktop window, scaling all calendar text and controls together. Four-, five-, and six-row months stay on one page. Each day previews two entries; expanded entries scroll within that day. Drag previews follow the same scale. Includes the task hierarchy fixes from v4.4.1.
 
-[Download v4.4.1](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.1) · [Release notes](RELEASE_NOTES.md) · [Detailed test report in Chinese](docs/user-feedback-review-2026-10-19.md)
+[Download v4.4.2](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.2) · [Release notes](RELEASE_NOTES.md) · [Calendar test report in Chinese](docs/calendar-fit-2026-10-21.md)
 
-Exit the app from the tray and back up your `data` folder before upgrading. Reported data loss and real online sync failures remain unconfirmed and are not marked as fixed.
+Exit the app from the tray and back up your `data` folder before upgrading. Keep existing data when installing over the previous version.
 
 [简体中文](README.md) | **English**
 
 ## Version and requirements
 
-- **Current version: v4.4.1 · Task hierarchy and calendar fixes**.
+- **Current version: v4.4.2 · Fit-to-window monthly calendar**.
 - **2026-10-17:** The desktop UI now communicates directly inside the app, without a local HTTP server or TCP connection. Python and dependencies are bundled; users do not need to install Python or configure an environment.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
@@ -21,16 +21,16 @@ Exit the app from the tray and back up your `data` folder before upgrading. Repo
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v4.4.1-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v4.4.1-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v4.4.2-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v4.4.2-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -84,7 +84,8 @@ It means “Complete three things tomorrow afternoon: organize materials, prepar
 ### 3. Calendar and drag scheduling
 
 - The monthly calendar combines deadline tasks and schedule items, showing linked items without duplicates.
-- Each date initially displays **three items** at a consistent cell height. Expand “N more items” to see the rest, then collapse it again.
+- The monthly calendar fits the available window width and height, including months with four to six rows. Dates, task text, and controls scale together.
+- Each date previews **two items**. Expand “N more items” and scroll within that date to see the rest without increasing the height of the month.
 - Drag an item to another date to reschedule it while preserving its time and the page's scroll position. A preview of the task bar follows the pointer, and the home page updates after the move.
 - Filter by category, switch months, or return to the current month.
 - Click a deadline task to edit it, or a schedule item to open its date. Date cells also show completion counts and holiday information.
@@ -218,4 +219,4 @@ Enable the optional bridge in Settings to let Dot read, create, reschedule, comp
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v4.4.1**. This repository provides application releases and usage documentation.
+The current version is **v4.4.2**. This repository provides application releases and usage documentation.

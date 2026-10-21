@@ -1,18 +1,18 @@
 # DDL Manager · 我的 DDL
 
-## 最新修复版 v4.4.1 2026年10月19日
+## 最新修复版 v4.4.2 2026年10月21日
 
-修复本轮确认的 **9 项问题**：父子任务完成与恢复联动、已完成任务层级、多级任务和分类筛选遗漏、各层截止时间校验、关联日历信息滞后、编辑分类裁切及工具遮挡。新增任务折叠、主页搜索和已完成显示开关；补充事务回滚、并发完成及账号隔离验证，**150 项 Python 回归测试全部通过**。
+**日历整月自适应电脑窗口**：月份完整放入当前页面，标题、日期、事项和操作按钮按同一比例缩放。支持四、五、六行月份；每天先显示两条事项，展开后在当天格子内滚动。修复缩放后拖拽预览尺寸和位置不一致的问题，保留 v4.4.1 的任务层级等修复。
 
-[下载 v4.4.1 修复版](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.1) · [完整修复说明](RELEASE_NOTES.md) · [测试与边界说明](docs/user-feedback-review-2026-10-19.md)
+[下载 v4.4.2 修复版](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.2) · [完整修复说明](RELEASE_NOTES.md) · [日历验证记录](docs/calendar-fit-2026-10-21.md)
 
-升级前请从托盘完全退出程序并备份 `data` 目录，安装到原目录时保留已有数据。丢档及真实在线同步失败尚未复现，本版未将其标记为已解决。
+升级前请从托盘完全退出程序并备份 `data` 目录，安装到原目录时保留已有数据。
 
 **简体中文** | [English](README_EN.md)
 
 ## 版本与运行要求
 
-- **当前版本：v4.4.1 · 任务层级与日历修复**。
+- **当前版本：v4.4.2 · 日历整月自适应**。
 - **2026-10-17 更新：** 主界面移除本地 HTTP 服务器与 TCP 连接，直接在程序内部通信；安装包内置 Python 运行时，用户无需安装 Python 或配置环境。
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
@@ -21,16 +21,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v4.4.1-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v4.4.1-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.1/DDLManager-v4.4.1-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v4.4.2-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v4.4.2-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.2/DDLManager-v4.4.2-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。
@@ -85,7 +85,8 @@
 ### 3. 日历与拖动排期
 
 - 月历整合 DDL 待办和日程，关联条目去重展示。
-- 每个日期格默认容纳 **3 条事项**，保持一致高度；点击“还有 N 项”展开，再次点击收起。
+- 月历根据窗口的可用宽高自动缩放，四至六行月份均可在一屏内显示；日期、任务文字和控件使用同一缩放比例。
+- 每个日期格紧凑预览 **2 条事项**；点击“还有 N 项”后在日期格内滚动查看，不撑大整个月份，再次点击收起。
 - 按住事项拖到其他日期即可改期，保留原有时间，页面保持原来的滚动位置。
 - 拖动时任务条跟随鼠标移动，改期成功后主页同步更新。
 - 支持分类筛选、切换月份和回到本月。
@@ -227,5 +228,5 @@
 
 欢迎反馈使用体验、提出功能建议，也欢迎围绕产品设计、功能开发和应用场景开展交流与合作！
 
-当前版本为 **v4.4.1**。本仓库提供软件发布包与使用说明。
+当前版本为 **v4.4.2**。本仓库提供软件发布包与使用说明。
 
