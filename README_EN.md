@@ -1,10 +1,18 @@
 # DDL Manager
 
-## Latest release v4.4.3 October 21 2026
+## Pinned · v5.0.0 workspace update · October 23, 2026
+
+Tasks, planning, focus and habits now work together: nested lists, undated tasks, categories, templates, dependencies, checklists, attachments, task-linked timers with optional artwork, editable time history, separate habits, day/week/year/agenda/Gantt views, execution blocks and private PNG/SVG review exports. Verified automatic backups, restart-only restore previews, recycle bin, persistent undo and health checks protect local data.
+
+The right tool rail is customizable; Ctrl+K opens global search. Stable-ID file synchronization reviews conflicts and deletions. WebDAV, LAN mobile/shared lists and external AI are optional and require explicit setup. Network providers and real mobile devices have not been certified merely by passing local tests. See the [implementation and verification report](docs/productivity-v500-2026-10-23.md).
+
+[Download v5.0.0](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.0.0) · [Release notes](RELEASE_NOTES.md). Start with **Workspace / Calendar / Focus / Habits**, or open **More → Data & recovery / Sync & connections / Guide**.
+
+## Previous release · v4.4.3 · October 21, 2026
 
 **Copy and paste calendar items with the right-click menu.** Right-click an item, choose Copy item, then right-click a destination day and choose Paste. Switch months before pasting if needed. The independent, unfinished copy keeps the title, time, category and notes; the original remains unchanged. Undo removes the copy. Includes the fit-to-window calendar and previous hierarchy fixes.
 
-[Download v4.4.3](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.3) · [Release notes](RELEASE_NOTES.md) · [Copy/paste test report in Chinese](docs/calendar-copy-2026-10-21.md)
+[Previous version v4.4.3](https://github.com/J0ey2ou/ddl-manager/releases/tag/v4.4.3) · [Release notes](RELEASE_NOTES.md) · [Copy/paste test report in Chinese](docs/calendar-copy-2026-10-21.md)
 
 Exit the app from the tray and back up your `data` folder before upgrading. Keep existing data when installing over the previous version.
 
@@ -12,7 +20,7 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Version and requirements
 
-- **Current version: v4.4.3 · Calendar copy and paste**.
+- **Current version: v5.0.0 · Workspace update**.
 - **2026-10-17:** The desktop UI now communicates directly inside the app, without a local HTTP server or TCP connection. Python and dependencies are bundled; users do not need to install Python or configure an environment.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
@@ -21,23 +29,23 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v4.4.3-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v4.4.3-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v4.4.3/DDLManager-v4.4.3-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v5.0.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v5.0.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
 3. Open DDL Manager from the desktop or Start menu. Create a local account on first use.
 4. Enable the floating window, startup option, and shortcuts in Settings as needed.
 
-Once downloaded, the installer works offline. Local schedules, recognition, statistics, and file-based schedule transfers do not require an internet connection. Microsoft To Do synchronization requires internet access.
+Once downloaded, the installer works offline. Local schedules, recognition, statistics, and file-based schedule transfers do not require an internet connection. Microsoft To Do, WebDAV and external AI require internet access and your own configuration.
 
 For the portable edition, extract the entire ZIP and keep `DDLManager.exe`, `_internal`, and `fresh-install.flag` together. Do not run the app from inside the ZIP. **Code → Download ZIP** downloads this repository's documentation. The automatically generated **Source code (zip / tar.gz)** release archives are also not application installers. Use the download links above to install the software.
 
@@ -47,7 +55,7 @@ The main window, floating window and quick capture window now call local applica
 
 Both distributions include Python and application dependencies. Users do not need Python, pip or a development environment. The recommended Setup also includes the full offline Microsoft WebView2 installer. Supported platforms remain Windows 10 version 2004 or later and Windows 11 x64.
 
-Local schedules, recognition, focus sessions, statistics and reminders work offline. Microsoft To Do requires internet access. Only the optional, manually enabled ChatGPT / Dot integration starts a separate local MCP endpoint.
+Local schedules, recognition, focus sessions, habits, statistics, reminders and file synchronization work offline. Microsoft To Do, WebDAV and external AI require explicit configuration and use. AI displays the outgoing content for confirmation before each request. Mobile access and shared lists are disabled by default; manually enabling them starts a separate LAN service and requires the computer to keep running. The optional ChatGPT / Dot integration also requires manually enabling its separate local MCP endpoint; see [DOT_SETUP.md](DOT_SETUP.md).
 
 Before upgrading, exit the app from the tray and back up your `data` folder. Install to the existing location, or preserve `data` when replacing portable program files. Existing accounts, schedules, saved ideas and focus creations remain in the local database.
 
@@ -107,7 +115,11 @@ It means “Complete three things tomorrow afternoon: organize materials, prepar
 
 ### 6. Transfer schedules between computers
 
-**Export schedules** and **Import schedules** appear above the Undo button at the bottom right of the home page. A short explanation appears on first use.
+In v5.0.0, **More → Sync & connections** adds stable-ID synchronization for tasks, plans, lists, templates, checklists and dependencies. It compares local and remote changes against the previous synchronization baseline, then lets you review conflicts and deletions before applying them. Use manual file exchange or optional HTTPS WebDAV with ETag conditional writes. These exchange files exclude attachments, focus records, habits and account credentials; use **Data & recovery** for complete backups.
+
+The legacy schedule import and export below remain available for existing `.ddl.json` files:
+
+**Export schedules** and **Import schedules** appear in the fixed right tool rail. A short explanation appears on first use.
 
 1. Sign in to your local account on computer A, choose Export schedules, and save a `.ddl.json` file.
 2. Copy the file to computer B using a USB drive or another method of your choice.
@@ -127,18 +139,20 @@ Exports contain schedules for the current account, without login information or 
 
 ### 7. Focus timers, creations and session records
 
-Open **Focus**, create a house, farm, or photo puzzle, and choose a target of **1–200 successful sessions**. Set a timer of **1–180 minutes**. Each finished session is saved automatically and adds one brick, one plant, or one puzzle piece to the selected creation.
+Open **Focus** and start a timer directly, with or without linked tasks. A house, farm or photo puzzle is an optional reward, not a requirement. Creations use a target of **1–200 successful sessions**. Countdown timers support **1–180 minutes**; count-up and break timers are also available. Completed sessions save their records and add a brick, plant or puzzle piece when a creation is selected.
 
 - **House:** Build a cottage one brick at a time, with a completed-house reveal.
 - **Farm:** Choose from 20 locally illustrated plants before each session, with growth and gentle sway animations.
 - **Photo puzzle:** Import a local JPG, PNG, or WebP image (up to 10 MB and 24 megapixels). It is divided into exactly the chosen number of pieces; each successful session animates one piece into place and restores its color.
 - **Floating timer:** Right-click the floating window to open focus timing or the collection. Choose a countdown, progress bar, or C4-style countdown with a completion effect. Pause, resume, and end sessions from either window.
-- **Persistence:** Creations, imported images, and successful sessions are saved per local account. Targets are fixed at creation. Paused or abandoned sessions earn no reward. Closing the page keeps the timer running. Countdown sessions settle by their saved end time; count-up sessions pause on app exit and can be resumed manually.
+- **Persistence:** Creations, imported images, and focus records are saved per local account. Each session may use no creation or one selected creation; creation targets are fixed at creation. Paused or abandoned sessions earn no reward. Closing the page keeps the timer running. Countdown sessions settle by their saved end time; count-up sessions pause on app exit and can be resumed manually.
 - **Feature switch:** Settings → Window manager → Focus controls the page and floating-window entries together. Turning it off ends unfinished sessions across accounts and preserves existing creations and successful-session records.
 
 Images remain on the computer and are not uploaded. Focus records and imported images are stored in the local database and are not included in schedule-transfer exports. Some new focus controls currently use Chinese labels.
 
-Choose **正向计时** (Count up) on the Focus page to start at `00:00` without a target duration. **完成并保存** (Finish and save) records the actual timed duration, excluding pauses, awards one success, and adds one brick, plant or puzzle piece. Discarding a session awards nothing. The floating timer supports count-up, pause, resume and finish too.
+Choose **正向计时** (Count up) on the Focus page to start at `00:00` without a target duration. **完成并保存** (Finish and save) records the actual timed duration, excluding pauses. If a creation is selected, it adds one brick, plant or puzzle piece. Discarding a session awards nothing. The floating timer supports count-up, pause, resume and finish too.
+
+Task cards can open a linked focus session directly. A record can link multiple tasks and allocate its duration by weight without counting the total more than once. **Focus → History** supports manual entries, editing, splitting, merging, recycling and undo, with labels for automatic, manual and edited records. Creations support renaming, groups, archiving and recycling. Manage recurring goals separately on the **Habits** page.
 
 Hover over a completed brick, plant or puzzle piece, then click to inspect its exact focus session. The record shows start and completion times, timer type and actual focus duration. Add or edit up to 2,000 characters describing what you completed. Records are scoped to the local account; existing creations link to historical sessions, whose notes can be filled in later. Keyboard users can focus a piece and press Enter or Space.
 
@@ -146,7 +160,7 @@ Leaving the page keeps the timer running. Exiting the desktop app pauses count-u
 
 ### 8. Ideas to consider
 
-The home page has a **待考虑事项** (Ideas to consider) button above Export / Import at the bottom right. Write an idea and choose **保存事项** to keep it locally per account, including after restarting.
+The fixed right tool rail has a **待考虑事项** (Ideas to consider) button. Write an idea and choose **保存事项** to keep it locally per account, including after restarting. Customize the rail to choose and reorder its functions.
 
 Choose **事项识别并转化** to recognize all saved notes, review titles, dates and recurrence, and confirm conversion into schedules. Supply a date for undated ideas. Unchecked notes and cancelled or failed conversions remain saved. Only successful conversions remove their source notes. Saving, deletion and conversion support Undo. These notes are not included in schedule exports; back up the `data` folder for a complete backup. New controls currently use Chinese labels.
 
@@ -180,7 +194,7 @@ This feature requires internet access. Changes made in Microsoft To Do do not sy
 
 ### 12. Undo, shortcuts, and background operation
 
-- **Undo:** Retain the current account's 30 most recent undoable operations during the session, including schedule imports. Hiding the app in the tray preserves this history; fully exiting clears it.
+- **Undo:** Persist the current account's 30 most recent undoable operations, including schedule imports, across app restarts. Undo stops when later edits or identity conflicts would be overwritten. Focus records and habits have their own undo controls.
 - **System tray:** The main window's `X` button hides the app in the Windows tray. The floating window does not occupy the taskbar. Double-click the tray icon to restore the main window, or right-click and choose Show floating window to enable or restore the panel. Choose Exit to close the app completely.
 - **Start with Windows:** Enable this in Settings to start in the tray when you sign in to Windows.
 - **Single instance:** Launching the app again restores the existing window.
@@ -219,4 +233,4 @@ Enable the optional bridge in Settings to let Dot read, create, reschedule, comp
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v4.4.3**. This repository provides application releases and usage documentation.
+The current version is **v5.0.0**. This repository provides application releases and usage documentation.
