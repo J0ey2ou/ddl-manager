@@ -1,0 +1,11 @@
+name = "ddl-daily-push"
+main = "worker.mjs"
+compatibility_date = "2026-10-01"
+[triggers]
+crons = ["* * * * *"]
+[[d1_databases]]
+binding = "DB"
+database_name = "ddl-daily-push"
+# Replace after running: npx wrangler d1 create ddl-daily-push
+database_id = "REPLACE_WITH_CREATED_DATABASE_ID"
+migrations_dir = "migrations"

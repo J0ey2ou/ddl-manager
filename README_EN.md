@@ -1,6 +1,12 @@
 # DDL Manager
 
-## Pinned · v5.0.0 workspace update · October 23, 2026
+## v5.1.0 · October 31, 2026
+
+A soft blue interface with consistent typography and icons; previous-night daily push snapshots; optional self-hosted cloud scheduling; three illustrated time-sharing posters; project stage templates; weekly reviews; notification update proposals; and shared calendar theme filters.
+
+[Download v5.1.0](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.1.0) · [Implementation and verification](docs/next-update-2026-10-31.md). Cloud scheduling requires your own deployment and credentials; real WeChat delivery has not been verified. Existing account data is preserved through incremental migration.
+
+## Previous release · v5.0.0 workspace update · October 23, 2026
 
 Tasks, planning, focus and habits now work together: nested lists, undated tasks, categories, templates, dependencies, checklists, attachments, task-linked timers with optional artwork, editable time history, separate habits, day/week/year/agenda/Gantt views, execution blocks and private PNG/SVG review exports. Verified automatic backups, restart-only restore previews, recycle bin, persistent undo and health checks protect local data.
 
@@ -20,7 +26,7 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Version and requirements
 
-- **Current version: v5.0.0 · Workspace update**.
+- **Current version: v5.1.0 · Time sharing and daily snapshots**.
 - **2026-10-17:** The desktop UI now communicates directly inside the app, without a local HTTP server or TCP connection. Python and dependencies are bundled; users do not need to install Python or configure an environment.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
@@ -29,16 +35,16 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v5.0.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v5.0.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.0.0/DDLManager-v5.0.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -233,4 +239,4 @@ Enable the optional bridge in Settings to let Dot read, create, reschedule, comp
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v5.0.0**. This repository provides application releases and usage documentation.
+The current version is **v5.1.0**. This repository provides application releases and usage documentation.
