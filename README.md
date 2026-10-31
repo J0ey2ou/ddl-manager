@@ -1,6 +1,14 @@
 # DDL Manager · 我的 DDL
 
-## 当前版本 · v5.1.0 · 2026年10月31日
+## 当前版本 · v5.1.1 · 2026年10月31日
+
+重新设计时光分享 PNG：冰蓝手记、深蓝成就展与奶油绿纪念册，配原创人物插画、清晰数字排版及方形/竖版/横版布局。28 个功能页与视图新增首次使用教程，关闭后保留右侧入口，按账号和页面记忆。9 套皮肤统一适配右侧工具栏、左侧清单栏、教程及按钮状态。
+
+[下载 v5.1.1](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.1.1) · [设计与验证说明](docs/share-guides-v511-2026-10-31.md)
+
+![新版分享卡，使用隔离测试数据](docs/images/share-gallery-v511.png)
+
+## 历史更新 · v5.1.0 · 2026年10月31日
 
 按参考图统一浅蓝界面、圆角白卡、字体与线条图标，增加紧凑布局与字体放大。新增前夜冻结的微信摘要、可自部署的云端调度、三套原创人物时光分享、项目阶段模板、成果周复盘、通知差异更新与跨日历视图的主题筛选。
 
@@ -28,7 +36,7 @@
 
 ## 版本与运行要求
 
-- **当前版本：v5.1.0 · 时光分享与前夜来信**。
+- **当前版本：v5.1.1 · 分享设计、首次教程与皮肤适配**。
 - **2026-10-17 更新：** 主界面移除本地 HTTP 服务器与 TCP 连接，直接在程序内部通信；安装包内置 Python 运行时，用户无需安装 Python 或配置环境。
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
@@ -37,16 +45,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。

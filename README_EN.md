@@ -1,6 +1,12 @@
 # DDL Manager
 
-## v5.1.0 · October 31, 2026
+## v5.1.1 · October 31, 2026
+
+Three redesigned illustrated share posters with responsive portrait, square and landscape layouts. First-use, account-scoped guides for 28 pages and views; reopen them from the right tool rail. All nine skins now style both sidebars and tutorial dialogs.
+
+[Download v5.1.1](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.1.1) · [Design and verification](docs/share-guides-v511-2026-10-31.md).
+
+## Previous release · v5.1.0 · October 31, 2026
 
 A soft blue interface with consistent typography and icons; previous-night daily push snapshots; optional self-hosted cloud scheduling; three illustrated time-sharing posters; project stage templates; weekly reviews; notification update proposals; and shared calendar theme filters.
 
@@ -35,16 +41,16 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.0/DDLManager-v5.1.0-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
