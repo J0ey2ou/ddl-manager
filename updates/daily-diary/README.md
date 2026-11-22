@@ -6,7 +6,7 @@
 
 ## 应用补丁
 
-本次以源码补丁交付。将本目录的 `daily-diary.patch` 放入已有的 v5.1.1 桌面应用源码根目录，在该目录执行以下命令：
+Windows 用户可以直接安装包含此功能的 [v5.1.2 桌面版](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.1.2)。源码用户可将本目录的 `daily-diary.patch` 放入已有的 v5.1.1 桌面应用源码根目录，在该目录执行以下命令：
 
 ```sh
 git apply --check daily-diary.patch

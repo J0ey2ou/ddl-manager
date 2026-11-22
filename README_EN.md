@@ -1,6 +1,12 @@
 # DDL Manager
 
-## v5.1.1 · October 31, 2026
+## v5.1.2 · November 22, 2026
+
+Open **Quick tools → Today’s diary** to write today’s entry. In the monthly calendar, choose **Write** or **Read** on a date to add, review or edit its entry. The day view opens the same entry. Each local account has its own diary.
+
+[Download v5.1.2](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.1.2)
+
+## Previous release · v5.1.1 · October 31, 2026
 
 Three redesigned illustrated share posters with responsive portrait, square and landscape layouts. First-use, account-scoped guides for 28 pages and views; reopen them from the right tool rail. All nine skins now style both sidebars and tutorial dialogs.
 
@@ -32,7 +38,7 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Version and requirements
 
-- **Current version: v5.1.0 · Time sharing and daily snapshots**.
+- **Current version: v5.1.2 · Daily diary**.
 - **2026-10-17:** The desktop UI now communicates directly inside the app, without a local HTTP server or TCP connection. Python and dependencies are bundled; users do not need to install Python or configure an environment.
 - **Operating system:** Windows 10 version 2004 or later / Windows 11.
 - **Architecture:** 64-bit x64.
@@ -41,16 +47,16 @@ Exit the app from the tray and back up your `data` folder before upgrading. Keep
 
 ## Download and installation
 
-### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe)
+### [Download the installer (recommended)](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-Setup-x64.exe)
 
-[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
+[Download the portable ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-windows-x64.zip) · [All releases](https://github.com/J0ey2ou/ddl-manager/releases)
 
 The recommended installer includes the full offline WebView2 installer. Download it, then double-click to install.
 
 | File | When to use it |
 | --- | --- |
-| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
-| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
+| [**DDLManager-v5.1.2-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-Setup-x64.exe) | Recommended. Includes the full Microsoft WebView2 offline installer. |
+| [**DDLManager-v5.1.2-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-windows-x64.zip) | For computers with WebView2 installed. Extract the entire archive before running the app. |
 
 1. Download and run the Setup file. Choose a writable folder on any supported drive. The default location is within the current Windows user's local application directory.
 2. If WebView2 is missing, Setup installs the bundled runtime automatically.
@@ -245,4 +251,4 @@ Enable the optional bridge in Settings to let Dot read, create, reschedule, comp
 
 Feedback, feature suggestions, and collaboration on product design, development, and practical uses are welcome.
 
-The current version is **v5.1.0**. This repository provides application releases and usage documentation.
+The current version is **v5.1.2**. This repository provides application releases and usage documentation.

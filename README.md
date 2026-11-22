@@ -1,6 +1,12 @@
 # DDL Manager · 我的 DDL
 
-## 当前版本 · v5.1.1 · 2026年10月31日
+## 当前版本 · v5.1.2 · 2026年11月22日
+
+从右侧「常用工具 → 今日日记」打开今天的记录。月历中点「写日记」可补写指定日期，点「看日记」可查看和编辑；日视图也能打开当天的日记。每个本地账号每天保存一篇。
+
+[下载 v5.1.2](https://github.com/J0ey2ou/ddl-manager/releases/tag/v5.1.2)
+
+## 历史更新 · v5.1.1 · 2026年10月31日
 
 重新设计时光分享 PNG：冰蓝手记、深蓝成就展与奶油绿纪念册，配原创人物插画、清晰数字排版及方形/竖版/横版布局。28 个功能页与视图新增首次使用教程，关闭后保留右侧入口，按账号和页面记忆。9 套皮肤统一适配右侧工具栏、左侧清单栏、教程及按钮状态。
 
@@ -36,7 +42,7 @@
 
 ## 版本与运行要求
 
-- **当前版本：v5.1.1 · 分享设计、首次教程与皮肤适配**。
+- **当前版本：v5.1.2 · 今日日记**。
 - **2026-10-17 更新：** 主界面移除本地 HTTP 服务器与 TCP 连接，直接在程序内部通信；安装包内置 Python 运行时，用户无需安装 Python 或配置环境。
 - **系统：Windows 10 2004 或更新版本 / Windows 11**
 - **架构：64 位 x64**
@@ -45,16 +51,16 @@
 
 ## 下载与安装
 
-### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe)
+### [⬇ 下载安装包（推荐）](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-Setup-x64.exe)
 
-[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
+[下载便携版 ZIP](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-windows-x64.zip) · [查看全部版本](https://github.com/J0ey2ou/ddl-manager/releases)
 
 推荐安装包内置 WebView2 完整离线安装器，下载后双击安装。
 
 | 下载文件 | 适合使用方式 |
 | --- | --- |
-| [**DDLManager-v5.1.0-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
-| [**DDLManager-v5.1.0-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.1/DDLManager-v5.1.1-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
+| [**DDLManager-v5.1.2-Setup-x64.exe**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-Setup-x64.exe) | 推荐。一体化安装包，内置微软 WebView2 完整离线安装器 |
+| [**DDLManager-v5.1.2-windows-x64.zip**](https://github.com/J0ey2ou/ddl-manager/releases/download/v5.1.2/DDLManager-v5.1.2-windows-x64.zip) | 已有 WebView2 的电脑，完整解压后直接运行 |
 
 1. 下载 Setup，双击安装。**C 盘、D 盘、E 盘均支持**，选择可写目录即可；默认使用当前用户的本地应用目录。
 2. 缺少 WebView2 时，安装程序会自动安装内置运行时，无需额外查找下载。
@@ -258,5 +264,5 @@ v5.0.0 的 **更多 → 同步与连接** 新增稳定编号同步：交换任�
 
 欢迎反馈使用体验、提出功能建议，也欢迎围绕产品设计、功能开发和应用场景开展交流与合作！
 
-当前版本为 **v5.1.0**。本仓库提供软件发布包与使用说明。
+当前版本为 **v5.1.2**。本仓库提供软件发布包与使用说明。
 
