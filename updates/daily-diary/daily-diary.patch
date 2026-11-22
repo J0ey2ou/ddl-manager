@@ -1,0 +1,380 @@
+diff --git a/app.py b/app.py
+index c6a816f..239b5ae 100644
+--- a/app.py
++++ b/app.py
+@@ -33,6 +33,8 @@ from pending_notes import register as register_pending_notes
+ register_pending_notes(app, store)
+ from morning_plan import register as register_morning_plan
+ register_morning_plan(app, store)
++from diary import register as register_diary
++register_diary(app, store)
+ from smart_assistant import register as register_smart_assistant
+ 
+ smart_service = register_smart_assistant(app, store)
+diff --git a/core.py b/core.py
+index 1665c93..96620af 100644
+--- a/core.py
++++ b/core.py
+@@ -895,6 +895,9 @@ class DDLStore:
+         with self._conn() as conn:
+             where, args = self._scoped('plan_date >= ? AND plan_date <= ?', (grid_start.isoformat(), grid_end.isoformat()))
+             plans = [dict(row) for row in conn.execute(f'SELECT * FROM daily_plans WHERE {where} ORDER BY start_time, id', args)]
++            diary_dates = {row[0] for row in conn.execute(
++                'SELECT entry_date FROM diary_entries WHERE user_id IS ? AND entry_date BETWEEN ? AND ?',
++                (self._user_id(), grid_start.isoformat(), grid_end.isoformat()))}
+         # Resolve linked metadata independently of month/category filters.
+         linked = {item['id']: dict(item) for item in self._rows()}
+         for plan in plans:
+@@ -925,6 +928,7 @@ class DDLStore:
+                     "day": cursor.day,
+                     "in_month": cursor.month == month,
+                     "is_today": cursor == today,
++                    "has_diary": key in diary_dates,
+                     "holiday": holiday,
+                     "ddls": day_ddls,
+                     "plans": day_plans,
+diff --git a/diary.py b/diary.py
+new file mode 100644
+index 0000000..c55799a
+--- /dev/null
++++ b/diary.py
+@@ -0,0 +1,51 @@
++"""One private journal entry per account and local calendar date."""
++from datetime import date
++import secrets
++
++from flask import jsonify, request, session
++
++
++def register(app, store):
++    @app.route('/diary/<day>', methods=['GET', 'POST'])
++    def diary_entry(day):
++        if day == 'today' and request.method == 'GET':
++            day = date.today().isoformat()
++        try:
++            if date.fromisoformat(day).isoformat() != day:
++                raise ValueError
++        except ValueError:
++            return jsonify(error='日记日期无效。'), 400
++
++        owner = store._user_id()
++        if request.method == 'GET':
++            with store._conn() as conn:
++                row = conn.execute(
++                    'SELECT body, revision FROM diary_entries WHERE user_id IS ? AND entry_date=?',
++                    (owner, day)).fetchone()
++            response = jsonify(date=day, body=row['body'] if row else '', revision=row['revision'] if row else 0)
++            response.cache_control.no_store = True
++            return response
++
++        token = session.get('smart_csrf', '')
++        if not token or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), token):
++            return jsonify(error='请刷新页面后重试。'), 403
++        entry = request.get_json(silent=True)
++        if not isinstance(entry, dict):
++            return jsonify(error='无效的日记内容。'), 400
++        body, revision = entry.get('body'), entry.get('revision')
++        if not isinstance(body, str) or not body.strip() or len(body) > 30000:
++            return jsonify(error='请填写日记正文，最多 30000 字。'), 400
++        if type(revision) is not int or not 0 <= revision < 2**63 - 1:
++            return jsonify(error='日记版本无效，请重新打开。'), 400
++        with store._conn() as conn:
++            if revision == 0:
++                changed = conn.execute(
++                    'INSERT INTO diary_entries(user_id,entry_date,body) VALUES (?,?,?) ON CONFLICT DO NOTHING',
++                    (owner, day, body))
++            else:
++                changed = conn.execute(
++                    'UPDATE diary_entries SET body=?, revision=revision+1 '
++                    'WHERE user_id IS ? AND entry_date=? AND revision=?', (body, owner, day, revision))
++            if not changed.rowcount:
++                return jsonify(error='这篇日记已在别处修改。请复制当前文字，重新打开后核对。'), 409
++        return jsonify(revision=revision + 1)
+diff --git a/schema.sql b/schema.sql
+index 7d6ca01..f1dd42f 100644
+--- a/schema.sql
++++ b/schema.sql
+@@ -35,6 +35,17 @@ CREATE TABLE IF NOT EXISTS pending_notes (
+     created_at TEXT NOT NULL
+ );
+ 
++CREATE TABLE IF NOT EXISTS diary_entries (
++    user_id INTEGER,
++    entry_date TEXT NOT NULL,
++    body TEXT NOT NULL,
++    revision INTEGER NOT NULL DEFAULT 1,
++    UNIQUE(user_id, entry_date)
++);
++-- SQLite treats NULL owners as distinct in a composite unique constraint.
++CREATE UNIQUE INDEX IF NOT EXISTS idx_diary_local_date
++    ON diary_entries(entry_date) WHERE user_id IS NULL;
++
+ CREATE TABLE IF NOT EXISTS settings (
+     key   TEXT PRIMARY KEY,
+     value TEXT NOT NULL
+diff --git a/static/calendar-fit.css b/static/calendar-fit.css
+index d17ad13..a488acb 100644
+--- a/static/calendar-fit.css
++++ b/static/calendar-fit.css
+@@ -26,6 +26,14 @@ body.calendar-page [data-calendar-canvas] { width:100%; padding:12px; border-rad
+ .calendar-page .calendar-compact .day-number { font-size:14px; line-height:16px; }
+ .calendar-page .calendar-compact .day-cell.today .day-number { padding:0 4px; border-radius:4px; }
+ .calendar-page .calendar-compact .holiday { font-size:10px; line-height:14px; }
++.calendar-page .day-top .holiday { overflow:hidden; text-overflow:ellipsis; }
++.calendar-page .day-top .day-diary {
++  margin-left:auto; padding:0 3px; min-height:16px; flex-shrink:0; border:0;
++  border-radius:3px; background:transparent; color:var(--muted); box-shadow:none;
++  font:inherit; font-size:11px; line-height:16px; cursor:pointer;
++}
++.calendar-page .day-top .day-diary[data-written="yes"] { background:var(--rail-selected); color:var(--rail-accent); font-weight:600; }
++.day-diary[data-written="yes"] .diary-new, .day-diary[data-written="no"] .diary-existing { display:none; }
+ .calendar-page .calendar-compact .day-summary { height:12px; min-height:12px; margin:0 0 2px; font-size:10px; line-height:12px; }
+ .calendar-page .calendar-compact .day-ddls { flex:1; min-height:0; gap:2px; overflow:hidden; }
+ .calendar-page .calendar-compact .day-cell.expanded .day-ddls { overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; }
+diff --git a/static/diary.js b/static/diary.js
+new file mode 100644
+index 0000000..5339100
+--- /dev/null
++++ b/static/diary.js
+@@ -0,0 +1,81 @@
++(() => {
++  const dialog = document.getElementById('diary-dialog');
++  const form = document.getElementById('diary-form');
++  const body = document.getElementById('diary-body');
++  const date = document.getElementById('diary-date');
++  const status = document.getElementById('diary-status');
++  const save = form.querySelector('[type="submit"]');
++  const close = document.getElementById('diary-close');
++  const label = (zh, en) => document.documentElement.lang === 'en' ? en : zh;
++  let entry = null;
++  let loadController;
++
++  document.addEventListener('click', async event => {
++    const trigger = event.target.closest('[data-diary-open]');
++    if (!trigger || dialog.open) return;
++    const day = trigger.dataset.diaryOpen;
++    const controller = new AbortController();
++    loadController = controller;
++    entry = null;
++    body.value = '';
++    body.disabled = save.disabled = true;
++    date.textContent = day === 'today' ? label('今天', 'Today') : day;
++    status.textContent = label('正在读取…', 'Loading…');
++    dialog.showModal();
++    try {
++      const response = await fetch('/diary/' + day, {cache:'no-store', signal:controller.signal});
++      if (!response.ok) throw Error();
++      const loaded = await response.json();
++      if (controller.signal.aborted) return;
++      entry = loaded;
++      body.value = entry.body;
++      date.textContent = date.dateTime = entry.date;
++      status.textContent = '';
++      body.disabled = save.disabled = false;
++      body.focus();
++    } catch (error) {
++      if (!controller.signal.aborted) status.textContent = label('读取失败，请关闭后重试。', 'Could not load. Close and try again.');
++    }
++  });
++
++  function closeEditor() {
++    if (close.disabled) return;
++    if (entry && body.value !== entry.body && !window.confirm(label('放弃尚未保存的修改？', 'Discard unsaved changes?'))) return;
++    loadController.abort();
++    dialog.close();
++    entry = null;
++    body.value = '';
++  }
++  close.addEventListener('click', closeEditor);
++  dialog.addEventListener('cancel', event => { event.preventDefault(); closeEditor(); });
++  body.addEventListener('input', () => { status.textContent = ''; });
++  form.addEventListener('submit', async event => {
++    event.preventDefault();
++    if (!entry || save.disabled) return;
++    if (!body.value.trim()) {
++      status.textContent = label('请填写日记正文。', 'Please write an entry.');
++      body.focus();
++      return;
++    }
++    const draft = body.value;
++    close.disabled = save.disabled = body.readOnly = true;
++    status.textContent = label('正在保存…', 'Saving…');
++    try {
++      const response = await fetch('/diary/' + entry.date, {
++        method:'POST', headers:{'Content-Type':'application/json', 'X-CSRF-Token':window.SMART_CSRF},
++        body:JSON.stringify({body:draft, revision:entry.revision})
++      });
++      const result = await response.json();
++      if (!response.ok) throw Error(result.error);
++      entry.body = draft;
++      entry.revision = result.revision;
++      const marker = document.querySelector('.day-diary[data-diary-open="' + entry.date + '"]');
++      if (marker) marker.dataset.written = 'yes';
++      status.textContent = label('日记已保存。', 'Entry saved.');
++    } catch (error) {
++      status.textContent = error.message || label('保存失败，请重试。', 'Could not save. Try again.');
++    } finally {
++      close.disabled = save.disabled = body.readOnly = false;
++    }
++  });
++})();
+diff --git a/static/style.css b/static/style.css
+index c6bafc7..e2a8344 100644
+--- a/static/style.css
++++ b/static/style.css
+@@ -241,6 +241,10 @@ body.edit-mode .card-view { padding-left: 38px; }
+ #pending-form { display:grid; gap:10px; margin:18px 0; }
+ #pending-form textarea { width:100%; box-sizing:border-box; resize:vertical; min-height:90px; font:inherit; }
+ #pending-form button { justify-self:end; }
++#diary-form { display:grid; gap:10px; margin-top:18px; }
++#diary-body { box-sizing:border-box; width:100%; resize:vertical; font:inherit; line-height:1.65; }
++#diary-status { margin:0; color:var(--text); }
++#diary-form button { justify-self:end; }
+ .pending-note { padding:14px 0; border-bottom:1px solid var(--border); }
+ .pending-note p, .pending-source { white-space:pre-wrap; overflow-wrap:anywhere; margin:0 0 8px; }
+ .pending-note button { float:right; }
+diff --git a/templates/base.html b/templates/base.html
+index afba9ae..188698c 100644
+--- a/templates/base.html
++++ b/templates/base.html
+@@ -67,6 +67,7 @@
+     <span class="tool-rail-title">{{ '常用工具' if lang == 'zh' else 'Quick tools' }}</span>
+     {% if page_tutorial %}<button type="button" id="page-tutorial-open" aria-haspopup="dialog"><span aria-hidden="true">?</span> 本页教程</button>{% endif %}
+     <button type="button" id="morning-open" aria-haspopup="dialog">梳理今日计划</button>
++    <button type="button" data-diary-open="today" aria-haspopup="dialog">{{ '今日日记' if lang == 'zh' else 'Today’s diary' }}</button>
+     <button type="button" id="pending-open" aria-haspopup="dialog">✎ 待考虑事项 <span id="pending-count">0</span></button>
+     <div class="schedule-transfer-actions" data-transfer-user="{{ desktop_user|default('local') }}">
+       <button type="button" id="schedule-export">导出日程</button>
+@@ -76,6 +77,18 @@
+     <button type="button" id="global-undo" disabled title="撤回最近一次本地事项或设置操作，跨重启保留最近30次。缓存清理和登录不在此范围。">↶ 撤回</button>
+     <small id="undo-message" role="status" aria-live="polite"></small>
+   </aside>
++  <dialog id="diary-dialog" class="pending-dialog" aria-labelledby="diary-title">
++    <div class="pending-heading">
++      <h3 id="diary-title">{{ '日记' if lang == 'zh' else 'Diary' }} · <time id="diary-date"></time></h3>
++      <button type="button" id="diary-close">{{ t.close|default('关闭' if lang == 'zh' else 'Close') }}</button>
++    </div>
++    <form id="diary-form">
++      <label for="diary-body">{{ '正文' if lang == 'zh' else 'Entry' }}</label>
++      <textarea id="diary-body" rows="10" maxlength="30000" required></textarea>
++      <p id="diary-status" role="status" aria-live="polite"></p>
++      <button type="submit" class="e-save">{{ t.save }}</button>
++    </form>
++  </dialog>
+   <dialog id="morning-dialog" class="pending-dialog" aria-labelledby="morning-title">
+     <div class="pending-heading"><h3 id="morning-title">梳理今日计划</h3><button type="button" id="morning-close" aria-label="关闭">✕</button></div>
+     <p class="pending-help">一行写一件事，按回车自动添加序号。可写“11.08”“11:08”“上午9点到10点”或“30分钟”；未写时间从 9:00 起安排，事项间默认间隔 1 小时，每项默认 60 分钟。核对后才会加入日程。</p>
+@@ -126,6 +139,7 @@
+   <script src="{{ url_for('static', filename='app.js') }}"></script>
+   <script src="{{ url_for('static', filename='pending.js') }}"></script>
+   <script src="{{ url_for('static', filename='morning-plan.js') }}"></script>
++  <script src="{{ url_for('static', filename='diary.js') }}"></script>
+   <script src="{{ url_for('static', filename='smart.js') }}"></script>
+   <script src="{{ url_for('static', filename='productivity.js') }}"></script>
+   {% if page_tutorial %}<script id="page-tutorial-data" type="application/json">{{ page_tutorial|tojson }}</script><script src="/static/page-tutorials.js"></script>{% endif %}
+diff --git a/templates/calendar.html b/templates/calendar.html
+index b4a4b36..86a5e96 100644
+--- a/templates/calendar.html
++++ b/templates/calendar.html
+@@ -27,7 +27,12 @@
+   <div class="calendar-grid">
+     {% for week in calendar.weeks %}{% for day in week %}
+     <div class="day-cell {{ '' if day.in_month else 'muted-day' }} {{ 'today' if day.is_today }}" data-date="{{ day.date }}" data-calendar-day data-calendar-preview="2" tabindex="0" aria-label="{{ day.date }}">
+-      <div class="day-top"><a class="day-number" href="{{ url_for('planner.view', view='day', date=day.date) }}" title="查看 {{ day.date }} 的截止、执行时间和实际专注">{{ day.day }}</a>{% if day.holiday %}<span class="holiday">{{ day.holiday }}</span>{% endif %}</div>
++      <div class="day-top">
++        <a class="day-number" href="{{ url_for('planner.view', view='day', date=day.date) }}" title="查看 {{ day.date }} 的截止、执行时间和实际专注">{{ day.day }}</a>
++        {% if day.holiday %}<span class="holiday">{{ day.holiday }}</span>{% endif %}
++        <button type="button" class="day-diary" data-diary-open="{{ day.date }}" data-written="{{ 'yes' if day.has_diary else 'no' }}" aria-haspopup="dialog" aria-describedby="diary-day-{{ day.date }}"><span class="diary-new">{{ '写日记' if lang == 'zh' else 'Write' }}</span><span class="diary-existing">{{ '看日记' if lang == 'zh' else 'Read' }}</span></button>
++        <span id="diary-day-{{ day.date }}" hidden>{{ day.date }}</span>
++      </div>
+       {% if day.total > 2 %}<button type="button" class="day-toggle" data-day-toggle aria-expanded="false" aria-controls="day-items-{{ day.date }}"><span data-day-toggle-label>还有 {{ day.total - 2 }} 项</span><span class="day-chevron" aria-hidden="true"></span></button>{% endif %}
+       <div class="day-summary">{% if day.task_total|default(day.total) %}<span>{{ t.completed }} {{ day.completed }}/{{ day.task_total|default(day.total) }}</span>{% if day.overdue %}<b>{{ t.overdue }} {{ day.overdue }}</b>{% endif %}{% endif %}</div>
+       <div class="day-ddls" id="day-items-{{ day.date }}">
+diff --git a/templates/planner.html b/templates/planner.html
+index 46891d1..e5cc709 100644
+--- a/templates/planner.html
++++ b/templates/planner.html
+@@ -14,6 +14,7 @@
+       <a href="{{ url_for('planner.view', view=planner.mode, date=planner.next, focus=1 if planner.show_focus else 0) }}" aria-label="下一时段">›</a>
+       <form method="get"><input type="hidden" name="view" value="{{ planner.mode }}"><input type="date" name="date" value="{{ planner.anchor }}" aria-label="定位日期"><label><input type="checkbox" name="focus" value="1" {{ 'checked' if planner.show_focus }}>显示实际专注</label><button>定位</button></form>
+       <button type="button" data-block-new>＋时间块</button><button type="button" data-batch-open>批量复制</button><button type="button" data-hours-open>工作时段</button>
++      {% if planner.mode == 'day' %}<button type="button" data-diary-open="{{ planner.anchor }}" aria-haspopup="dialog">{{ '当天日记' if lang == 'zh' else 'Day’s diary' }}</button>{% endif %}
+     </div><p class="setting-sub">{{ planner.first }} — {{ planner.last }} · <span class="planner-legend">● 截止　● 执行　● 实际专注</span></p>
+   </header>
+   <p role="status" aria-live="polite" id="planner-notice" hidden></p>
+diff --git a/tests/test_diary.py b/tests/test_diary.py
+new file mode 100644
+index 0000000..ea6996f
+--- /dev/null
++++ b/tests/test_diary.py
+@@ -0,0 +1,70 @@
++from datetime import date
++from pathlib import Path
++import tempfile
++import unittest
++
++from flask import Flask
++
++from core import DDLStore
++from diary import register
++
++
++class DiaryTests(unittest.TestCase):
++    def setUp(self):
++        folder = tempfile.TemporaryDirectory()
++        self.addCleanup(folder.cleanup)
++        self.store = DDLStore(Path(folder.name) / 'test.db', Path(__file__).resolve().parents[1] / 'schema.sql')
++        self.owner = None
++        self.store.set_user_provider(lambda: self.owner)
++        app = Flask(__name__)
++        app.secret_key = 'test'
++        register(app, self.store)
++        self.client = app.test_client()
++        with self.client.session_transaction() as session:
++            session['smart_csrf'] = 'test-token'
++        self.day = '2026-11-01'
++
++    def save(self, body, revision=0, day=None):
++        return self.client.post('/diary/' + (day or self.day), json=dict(body=body, revision=revision),
++                                headers={'X-CSRF-Token': 'test-token'})
++
++    def test_today_and_dated_entries(self):
++        today = self.client.get('/diary/today')
++        self.assertEqual(today.json, dict(body='', revision=0, date=date.today().isoformat()))
++        self.assertTrue(today.cache_control.no_store)
++        self.assertEqual(self.save('第一行\n第二行 <script>').json['revision'], 1)
++        self.assertEqual(self.client.get('/diary/' + self.day).json['body'], '第一行\n第二行 <script>')
++        self.assertEqual(self.save('补充', 1).json['revision'], 2)
++        self.assertEqual(self.client.get('/diary/2026-11-02').json['body'], '')
++
++    def test_stale_revisions_preserve_saved_text_for_all_accounts(self):
++        for owner in (None, 1, 2):
++            self.owner = owner
++            self.assertEqual(self.save('原稿').status_code, 200)
++            self.assertEqual(self.save('另一篇').status_code, 409)
++            self.assertEqual(self.save('已修改', 1).status_code, 200)
++            self.assertEqual(self.save('旧窗口', 1).status_code, 409)
++            self.assertEqual(self.client.get('/diary/' + self.day).json['body'], '已修改')
++
++    def test_calendar_marks_only_owned_entries_including_adjacent_month(self):
++        self.save('私密日记')
++        self.save('上月', day='2026-10-31')
++        def marked():
++            days = self.store.calendar_month(2026, 11)['weeks']
++            return {day['date'] for week in days for day in week if day['has_diary']}
++        self.assertEqual(marked(), {'2026-10-31', self.day})
++        self.owner = 1
++        self.assertEqual(marked(), set())
++        self.assertEqual(self.client.get('/diary/' + self.day).json['body'], '')
++        self.assertEqual(self.save('本账号的记录').status_code, 200)
++        self.owner = None
++        self.assertEqual(self.client.get('/diary/' + self.day).json['body'], '私密日记')
++
++    def test_invalid_writes_leave_day_empty(self):
++        for body in ('  ', '字' * 30001, 23):
++            self.assertEqual(self.save(body).status_code, 400)
++        for day in ('2026-02-30', '20261101', 'today'):
++            self.assertEqual(self.save('正文', day=day).status_code, 400)
++        self.assertEqual(self.save('正文', -1).status_code, 400)
++        self.assertEqual(self.client.post('/diary/' + self.day, json={'body':'正文', 'revision':0}).status_code, 403)
++        self.assertEqual(self.client.get('/diary/' + self.day).json['revision'], 0)
